@@ -1196,7 +1196,7 @@ const server = app.listen(PORT, () => {
         entries: {
           notion: {
             enabled: true,
-            apiKey: "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"
+            apiKey: "ntn_*****************"
           }
         }
       }
