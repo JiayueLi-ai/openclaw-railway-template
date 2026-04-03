@@ -1200,6 +1200,24 @@ const server = app.listen(PORT, () => {
         log.warn("wrapper", `doctor --fix failed: ${err.message}`);
       }
       await ensureGatewayRunning();
+      // 初始化 Notion skill 配置
+const configPath = path.join(STATE_DIR, "openclaw.json");
+try {
+  const config = {
+    skills: {
+      entries: {
+        notion: {
+          enabled: true,
+          apiKey: "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"
+        }
+      }
+    }
+  };
+  fs.writeFileSync(configPath, JSON.stringify(config, null, 2), { encoding: "utf8" });
+  log.info("wrapper", `Notion skill configured at ${configPath}`);
+} catch (err) {
+  log.warn("wrapper", `Failed to write config: ${err.message}`);
+}
     })().catch((err) => {
       log.error("wrapper", `failed to start gateway at boot: ${err.message}`);
     });
